@@ -5,6 +5,12 @@ This project showcases my knowledge of building a clean, well built, api in pyth
 
 It will accessible through a frontend swagger page.
 
+### To Run ( Host ) Locally
+1. py -m venv env
+2. start your venv
+3. pip install -r requirements.txt
+4. py app.py
+
 ### Overview
 There are 2 api for this project:
 1. user login + jwt auth

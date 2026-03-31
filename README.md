@@ -6,10 +6,22 @@ This project showcases my knowledge of building a clean, well built, api in pyth
 It will accessible through a frontend swagger page.
 
 ### To Run ( Host ) Locally
-1. py -m venv env
+#### Setup virtual env and install packages
+1. `py -m venv env`
 2. start your venv
-3. pip install -r requirements.txt
-4. py app.py
+3. `pip install -r requirements.txt`
+
+#### Setup postgres db
+1. [install postgres](https://www.postgresql.org/download/)
+2. ensure postgre is running
+3. create db called "simple-python-api-db"
+4. run the following commands
+    - `flask db init`
+    - `flask db migrate -m "create users table"`
+    - `flask db upgrade`
+
+### Run the app
+1. `py app.py` 
 
 ### Overview
 There are 2 api for this project:

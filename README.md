@@ -7,18 +7,20 @@ In the future it will be accessible through a frontend swagger page.
 
 ### To Run ( Host ) Locally
 #### Setup virtual env and install packages
+Open a terminal and cd into the project directory and run
 1. `py -m venv env`
 2. start your venv
 3. `pip install -r requirements.txt`
 
 #### Setup postgres db
-1. [install postgres](https://www.postgresql.org/download/)
-2. ensure postgre is running
-3. create db called "simple-python-api-db"
-4. run the following commands
-    - `flask db init`
-    - `flask db migrate -m "create users table"`
-    - `flask db upgrade`
+1. [Install postgres](https://www.postgresql.org/download/)
+2. Ensure postgre is running.
+3. Create db called "simple-python-api-db".
+4. In the project, open the .env file and update the DATABASE_URL_DEV to use your password.
+5. In a terminal, cd into the project directory and then run the following commands:
+    1. `flask db init`
+    2. `flask db migrate -m "create users table"`
+    3. `flask db upgrade`
 
 ### Run the app
 1. `py app.py` 

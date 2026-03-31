@@ -33,11 +33,12 @@ There are 2 api for this project:
 |-----|------|
 | Language | Python | 
 | Web Framework | Flask |
+| .env file & config | python-dotenv |
 | Authentication | Flask‑JWT‑Extended |
 | Testing | pytest |
 | Database  (DB) | PostgreSQL |
-| DB Migrations | Alembic |
+| DB Migrations | Alembic + Flask Migrate |
 | DB ORM | SQL Alchemy |
 | Serialization & Validation | Marshmellow |
-| Flask-Smorest | API framework + Swagger |
+| API UI & Documentation |  Swagger|
 | Hosting | Render |

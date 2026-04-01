@@ -3,10 +3,10 @@ from config.settings import get_config
 from startup.register_blueprints import register_blueprints
 from startup.extensions import db, migrate
 
-info = Info(title="Simple Python Flask API", version="1.0.0")
 
 def create_app(config_name="default"):
     print("")
+    info = Info(title="Simple Python Flask API", version="1.0.0")
     app = OpenAPI(__name__, info=info)
     print(">>> USING OPENAPI APP FACTORY <<<")
     print("APP TYPE:", type(app))

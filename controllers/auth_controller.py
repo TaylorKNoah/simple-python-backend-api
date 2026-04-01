@@ -1,7 +1,7 @@
 from flask_openapi3 import APIBlueprint, Tag
 from flask import jsonify, make_response
 from pydantic import ValidationError
-from requests.register_request import RegisterRequest
+from request_models.register_request import RegisterRequest
 
 auth_bp = APIBlueprint("auth", __name__, url_prefix="/auth")
 auth_tag = Tag(name="Auth", description="Authentication endpoints")

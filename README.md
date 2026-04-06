@@ -3,7 +3,7 @@
 ### Purpose
 This project showcases my knowledge of building a clean, well built, api in python for business applications.  
 
-In the future it will be accessible through a frontend swagger page.
+In the future it will be accessible through a public facing frontend swagger page.
 
 ### OpenAPI URls
 - Local

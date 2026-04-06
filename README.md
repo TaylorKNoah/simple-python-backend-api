@@ -11,6 +11,7 @@ This project showcases my knowledge of building a clean, well built, api in pyth
 - PostgresSQL DB + Migrations
 - JWT Authentication
 - Public Hosting + Public Swagger UI via Render
+- CI / CD github workflows
 
 ### OpenAPI URls
 - Local

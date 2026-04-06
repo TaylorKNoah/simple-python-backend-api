@@ -5,6 +5,11 @@ This project showcases my knowledge of building a clean, well built, api in pyth
 
 In the future it will be accessible through a frontend swagger page.
 
+### OpenAPI URls
+- Local
+  - http://localhost:5000/openapi/
+  - http://localhost:5000/openapi/swagger#
+
 ### To Run ( Host ) Locally
 #### Setup virtual env and install packages
 Open a terminal and cd into the project directory and run

@@ -4,6 +4,7 @@
 This project showcases my knowledge of building a clean, well built, api in python for business applications.
 
 ### Highlights
+- OpenAPI / Flask app with Django style project layout ( e.g. models, controllers, repositories, stores, etc )
 - Endpoints: Register Account, Login, Logout, SavePreferences
 - PostgresSQL DB + Migrations
 - JWT Authentication

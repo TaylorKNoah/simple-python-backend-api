@@ -1,4 +1,6 @@
-# simple-python-backend-api
+# simple-python-backend-
+
+##### In-Progress
 
 ### Purpose
 This project showcases my knowledge of building a clean, well built, api in python for business applications.
@@ -9,8 +11,6 @@ This project showcases my knowledge of building a clean, well built, api in pyth
 - PostgresSQL DB + Migrations
 - JWT Authentication
 - Public Hosting + Public Swagger UI via Render
-
-*In the future Swagger page will be public facing.
 
 ### OpenAPI URls
 - Local

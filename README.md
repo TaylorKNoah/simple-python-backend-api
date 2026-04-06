@@ -37,11 +37,6 @@ Open a terminal and cd into the project directory and run
 ### Run the app
 1. `py app.py` 
 
-### Overview
-There are 2 api for this project:
-1. user login + jwt auth
-2. user preferences - using jwt auth
-
 ### Tech Stack
 | Use | Tech |  
 |-----|------|

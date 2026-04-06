@@ -12,4 +12,4 @@ class AuthStore(BaseStore):
     def get_user_by_name(self, name: str) -> User | None:
         return User.query.filter_by(name=name).first()
 
-auth_store = AuthStore()
+auth_store_instance = AuthStore()

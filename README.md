@@ -1,9 +1,15 @@
 # simple-python-backend-api
 
 ### Purpose
-This project showcases my knowledge of building a clean, well built, api in python for business applications.  
+This project showcases my knowledge of building a clean, well built, api in python for business applications.
 
-In the future it will be accessible through a public facing frontend swagger page.
+### Highlights
+- Endpoints: Register Account, Login, Logout, SavePreferences
+- PostgresSQL DB + Migrations
+- JWT Authentication
+- Public Hosting + Public Swagger UI via Render
+
+*In the future Swagger page will be public facing.
 
 ### OpenAPI URls
 - Local

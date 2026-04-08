@@ -1,5 +1,6 @@
 import pytest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
+from werkzeug.security import generate_password_hash
 from models.user import User
 from repositories.auth_repository import AuthRepository
 from request_models.register_request import RegisterRequest
@@ -12,6 +13,10 @@ def mock_store():
 @pytest.fixture
 def repo(mock_store: MagicMock):
     return AuthRepository(auth_store=mock_store)
+
+#################################################################################################################
+###################  register_user                                            ###################################
+#################################################################################################################
 
 def test_register_user_success(repo: AuthRepository, mock_store: MagicMock):
     mock_store.get_user_by_name.return_value = None
@@ -40,3 +45,32 @@ def test_register_user_hashes_password(repo: AuthRepository, mock_store: MagicMo
 
     _, kwargs = mock_store.create_user.call_args
     assert kwargs["password_hash"] != "test-password"
+
+#################################################################################################################
+###################  login_user                                               ###################################
+#################################################################################################################
+
+def test_login_user_should_return_user_on_success(repo: AuthRepository, mock_store: MagicMock):
+    expectedPassword = "test-password"
+    expectedPasswordHash = generate_password_hash(expectedPassword)
+    expectedUser: User = User(id=1, name="test-name", password_hash=expectedPasswordHash)
+   
+    mock_store.get_user_by_name.return_value = expectedUser
+
+    actualUser = repo.login_user(expectedUser.name, expectedPassword)
+
+    assert actualUser == expectedUser
+
+def test_login_user_raises_value_error_when_user_not_found(repo: AuthRepository, mock_store: MagicMock):
+    mock_store.get_user_by_name.return_value = None
+
+    with pytest.raises(ValueError, match="Invalid Credentials"):
+        repo.login_user(name="test-name", password="test-password")
+
+def test_login_user_raises_value_error_when_user_not_found(repo: AuthRepository, mock_store: MagicMock):
+    wrong_password = generate_password_hash("wrong-passwrod")
+    expectedUser: User = User(id=1, name="test-name", password_hash=generate_password_hash("test-password"))
+    mock_store.get_user_by_name.return_value = expectedUser
+
+    with pytest.raises(ValueError, match="Invalid Credentials"):
+        repo.login_user(name="test-name", password=wrong_password)

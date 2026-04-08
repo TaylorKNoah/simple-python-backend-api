@@ -7,3 +7,4 @@ pydantic[email]
 flask-openapi3[swagger]
 pytest
 pytest-mock
+flask_jwt_extended 

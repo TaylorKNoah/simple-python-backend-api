@@ -1,9 +1,17 @@
-# simple-python-backend-api
+# simple-python-backend-
+
+##### In-Progress
 
 ### Purpose
-This project showcases my knowledge of building a clean, well built, api in python for business applications.  
+This project showcases my knowledge of building a clean, well built, api in python for business applications.
 
-In the future it will be accessible through a frontend swagger page.
+### Highlights
+- OpenAPI / Flask app with Django style project layout ( e.g. models, controllers, repositories, stores, etc )
+- Endpoints: Register Account, Login, Logout, SavePreferences
+- PostgresSQL DB + Migrations
+- JWT Authentication
+- Public Hosting + Public Swagger UI via Render
+- CI / CD github workflows
 
 ### OpenAPI URls
 - Local
@@ -29,11 +37,6 @@ Open a terminal and cd into the project directory and run
 
 ### Run the app
 1. `py app.py` 
-
-### Overview
-There are 2 api for this project:
-1. user login + jwt auth
-2. user preferences - using jwt auth
 
 ### Tech Stack
 | Use | Tech |  

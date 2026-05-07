@@ -1,4 +1,4 @@
-name: 'Restrict Merge to Main'
+name: Restrict Merge to Main
 
 on:
   pull_request:

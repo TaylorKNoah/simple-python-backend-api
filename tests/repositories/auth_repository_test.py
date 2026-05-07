@@ -19,8 +19,7 @@ def repo(mock_store: MagicMock):
 #################################################################################################################
 
 def test_register_user_success(repo: AuthRepository, mock_store: MagicMock):
-    mock_store.get_user_by_name.return_value = None
-    mock_store.create_user.return_value = MagicMock(spec=User)
+    mock_store.get_user_by_name.return_value = None # avoids conflicts
 
     repo.register_user(RegisterRequest(name="test-name", password="test-password"))
 
@@ -44,7 +43,8 @@ def test_register_user_hashes_password(repo: AuthRepository, mock_store: MagicMo
     repo.register_user(RegisterRequest(name="test-name", password="test-password"))
 
     _, kwargs = mock_store.create_user.call_args
-    assert kwargs["password_hash"] != "test-password"
+    found_user: User = kwargs["user"]
+    assert found_user.password_hash != "test-password"
 
 #################################################################################################################
 ###################  login_user                                               ###################################

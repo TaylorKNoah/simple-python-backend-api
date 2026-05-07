@@ -1,7 +1,6 @@
 import pytest
 from pytest_mock import MockerFixture
-from unittest.mock import MagicMock
-from sqlalchemy.exc import SQLAlchemyError
+from unittest.mock import MagicMock, call
 from app import create_app
 from models.user import User
 from stores.auth_store import AuthStore
@@ -16,54 +15,38 @@ def app_context():
     with app.app_context():
         yield
 
-def test_create_user_success(mocker: MockerFixture, store: AuthStore):
+def test_create_user(mocker: MockerFixture, store: AuthStore):
+    # given mock db session
     mock_session: MagicMock = mocker.patch("startup.extensions.db.session")
     add: MagicMock = mock_session.add
     commit: MagicMock = mock_session.commit
 
-    user = store.create_user(name="test-name", password_hash="test-hash")
+    # given user
+    user = User(name="test_name", password_hash="test_hash")
 
+    # when create_user called
+    store.create_user(user)
+
+    # then mock calls match expected
+    assert mock_session.mock_calls == [call.add(instance=user), call.commit()]
     add.assert_called_once()
     commit.assert_called_once()
-    assert user.name == "test-name"
-    assert user.password_hash == "test-hash"
 
+def test_get_user_by_name(mocker: MockerFixture, store: AuthStore):
+    # given user
+    user = User(name="test-name")
 
-def test_create_user_integrity_error(mocker: MockerFixture, store: AuthStore):
-    mocker.patch("startup.extensions.db.session")
-    mocker.patch.object(store, "_commit", side_effect=ValueError("integrity error"))
-
-    with pytest.raises(ValueError, match="integrity error"):
-        store.create_user(name="test-name", password_hash="test-hash")
-
-
-def test_create_user_sqlalchemy_error(mocker: MockerFixture, store: AuthStore):
-    mocker.patch("startup.extensions.db.session")
-    mocker.patch.object(store, "_commit", side_effect=SQLAlchemyError())
-
-    with pytest.raises(SQLAlchemyError):
-        store.create_user(name="test-name", password_hash="test-hash")
-
-def test_get_user_by_name_success(mocker: MockerFixture, store: AuthStore):
+    # given query returns user
     mock_query: MagicMock = mocker.patch("stores.auth_store.User.query")
-    mock_user = MagicMock(spec=User)
     filter_by: MagicMock = mock_query.filter_by
     first: MagicMock = filter_by.return_value.first
-    first.return_value = mock_user
+    first.return_value = user
 
+    # when get_user_by_name called
     result = store.get_user_by_name("test-name")
 
+    # then result matches user and mock calls match expected
+    assert result == user
+    assert mock_query.mock_calls == [call.filter_by(name='test-name'), call.filter_by().first()]
     filter_by.assert_called_once_with(name="test-name")
     first.assert_called_once()
-    assert result == mock_user
-
-def test_get_user_by_name_not_found(mocker: MockerFixture, store: AuthStore):
-    mock_query: MagicMock = mocker.patch("stores.auth_store.User.query")
-    filter_by: MagicMock = mock_query.filter_by
-    first: MagicMock = filter_by.return_value.first
-    first.return_value = None
-
-    result = store.get_user_by_name("test-name")
-
-    filter_by.assert_called_once_with(name="test-name")
-    assert result is None

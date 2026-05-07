@@ -1,5 +1,4 @@
 from datetime import datetime, UTC
-
 from startup.extensions import db
 
 class User(db.Model):
@@ -9,3 +8,10 @@ class User(db.Model):
     name = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now(UTC))
+
+    preferences = db.relationship(
+        "UserPreference",
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )

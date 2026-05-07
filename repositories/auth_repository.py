@@ -14,8 +14,7 @@ class AuthRepository:
             raise ValueError(f"Username '{reg_req.name}' is already taken.")
 
         password_hash = generate_password_hash(reg_req.password)
-        return self.auth_store.create_user(name=reg_req.name, password_hash=password_hash)
-
+        self.auth_store.create_user(user=User(name=reg_req.name, password_hash=password_hash))
 
     def login_user(self, name: str, password: str):
         # does user exist?

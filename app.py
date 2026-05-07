@@ -17,6 +17,8 @@ def create_app(config_name="default"):
         "DEV_JWT_SECRET_KEY"  # fallback for local/dev
     )
 
+    from models import User, UserPreference
+
     db.init_app(app)
     migrate.init_app(app, db)
 

@@ -2,6 +2,7 @@ name: 'Restrict Merge to Main'
 
 on:
   pull_request:
+    branches: [main]
 
 jobs:
   check_branch:
